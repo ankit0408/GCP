@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "gcp"
+version = "0.1.0"
+description = "GCP Hackathon- Smart Address Filling"
+authors = ["ankit030 <ankit.kumar30@delhivery.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^2.3.2"
+sqlalchemy = "^2.0.19"
+psycopg2 = "^2.9.6"
+requests = "^2.31.0"
+cors = "^1.0.1"
+flask-cors = "^4.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
