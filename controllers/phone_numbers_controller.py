@@ -52,6 +52,11 @@ def get_entities_by_complete_address():
             print(database_entities_dict)
             client_entities_mapping = match_entities(client_entities, database_entities_dict, model, parameters)
             print(client_entities_mapping)
+            phone_entry = session.query(PhoneNumbers).filter_by(
+                phone_number_id=address_entry.phone_number_id).first()
+            
+            name=phone_entry.owner_name
+            client_entities_mapping['name']=name
 
             # Call text-bison here for entity extraction for the required form.
 
