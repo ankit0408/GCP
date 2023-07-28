@@ -364,11 +364,11 @@ if __name__ == "__main__":
         "top_k": 5
     }
     model = TextGenerationModel.from_pretrained("text-bison@001")
-    # user_address = "{28/4/45} Mypadu Road Near Rajgopal Rice Mill,nan,nan,nan,Nellore,Andhra Pradesh"
-    # user_address = "{28/4/45} Mypadu Road Near Rajgopal Rice Mill,nan,nan,nan,Nellore,AP"
-    # get_entity_ordering_dict()
-    # response = extract_entities(user_address, model, parameters)
-    # print("Response: ", response)
+    user_address = "{28/4/45} Mypadu Road Near Rajgopal Rice Mill,nan,nan,nan,Nellore,Andhra Pradesh"
+    user_address = "{28/4/45} Mypadu Road Near Rajgopal Rice Mill,nan,nan,nan,Nellore,AP"
+    get_entity_ordering_dict()
+    response = extract_entities(user_address, model, parameters)
+    print("Response: ", response)
     client_entities = ['pincode', 'state', 'locality', 'landmark', 'city']
 
     database_entities_dict = {'door_number': '103', 'floor': '1st', 'society': 'tirumala towers', 'locality': 'new indhara nager', 'city': 'tirupathi', 'state': 'andhra pradesh'}

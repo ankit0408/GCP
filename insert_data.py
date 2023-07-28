@@ -1,6 +1,6 @@
 import random
 import string
-from models import PhoneNumbers, Session
+from models import Addresses, Session
 
 # if __name__ == '__main__':
     # Create a new Contact object with the data to insert
@@ -96,18 +96,26 @@ def generate_random_owner_name():
     surname = random.choice(surnames)
     return f"{name} {surname}"
 
+    # address_id = Column(Integer , nullable=False)
+    # phone_number_id = Column(Integer, nullable=False)
+    # entities = Column(JSON, nullable=False)
+    # complete_address = Column(String, nullable=False)
+    # input_payload = Column(JSON, nullable=False)
+
+
 if __name__ == "__main__":
     session = Session()
 
+    # Populating 400 data entries in PhoneNumbers table
     try:
-        # Populating 400 data entries in PhoneNumbers table
-        for _ in range(400):
-            print('1')
-            phone_number = generate_random_phone_number()
-            print('2')
-            owner_name = generate_random_owner_name()
+        for _ in range(1):
 
-            phone_entry = PhoneNumbers(phone_number=phone_number, owner_name=owner_name)
+
+            phone_entry = Addresses( address_id = 1,
+                            phone_number_id = '7338973989',
+                            entities = {'name':'mohit' , 'village':'gurgaon'},
+                            complete_address = "gurgaon",
+                            input_payload = {'name':'mohit' , 'village':'gurgaon','state':'HR'})
             session.add(phone_entry)
         
         session.commit()

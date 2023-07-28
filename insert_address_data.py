@@ -4,14 +4,15 @@ if __name__ == '__main__':
 
     #query to get data asscocited with a phone number in PhoneNumbers table
     session = Session()
-    contacts = session.query(PhoneNumbers).filter_by(phone_number = '7450288661').first()
-    print(contacts)
+    #contacts = session.query(PhoneNumbers).filter_by(phone_number = '7450288661').first()
+    session.query(PhoneNumbers).filter_by(phone_number = '7450288661').first()
+    #print(contacts)
     session.close()
 
 
     # Create a new adress object with the data to insert
     new_contact_data = {
-        'phone_number_id': contacts.phone_number_id,
+        'phone_number_id': '745',
         'entities': 
           {
 "flat": "9",
