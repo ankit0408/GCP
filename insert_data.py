@@ -40,6 +40,7 @@ from models import PhoneNumbers, Session
     # # Close the session
     # session.close()
 
+print("hello world")
 def generate_random_phone_number():
     prefix = random.choice(['6', '7', '8', '9'])
     print(prefix)
