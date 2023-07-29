@@ -111,11 +111,11 @@ if __name__ == "__main__":
         for _ in range(1):
 
 
-            phone_entry = Addresses( address_id = 1,
-                            phone_number_id = '7338973989',
-                            entities = {'name':'mohit' , 'village':'gurgaon'},
-                            complete_address = "gurgaon",
-                            input_payload = {'name':'mohit' , 'village':'gurgaon','state':'HR'})
+            phone_entry = Addresses(
+                            phone_number_id = '8800281520',
+                            entities = {'name':'mohit' , 'district':'gurgaon', "state":"haryana"},
+                            complete_address = "mohit, gurgaon, haryana",
+                            input_payload = {'name':'mohit' , 'district':'gurgaon','state':'HR'})
             session.add(phone_entry)
         
         session.commit()

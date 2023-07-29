@@ -40,6 +40,7 @@ class Addresses(Base):
     complete_address = Column(String, nullable=False)
     input_payload = Column(JSON, nullable=False)
 
+    ### Unique Constraint: We can have multiple address_ids corresponding to a phone number.
     __table_args__ = (UniqueConstraint(phone_number_id, address_id),)
 
     @staticmethod
