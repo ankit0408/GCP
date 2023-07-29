@@ -14,21 +14,6 @@ Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 session = Session()
 
-# class PhoneNumbers(Base):
-#     __tablename__ = 'phone_numbers'
-
-#     phone_number_id = Column(Integer, primary_key=True)
-#     phone_number = Column(String, nullable=False, unique=True)
-#     owner_name = Column(String)
-
-#     # Establish the one-to-many relationship between PhoneNumbers and Addresses
-#     addresses = relationship('Addresses', back_populates='phone_number', cascade='all, delete-orphan')
-
-# id = Column(Integer, primary_key=True)
-#     col1 = Column(Integer, unique=True, nullable=False)
-#     col2 = Column(Integer)
-#     parent_id = Column(Integer, ForeignKey('my_table.id'))
-#     children = relationship('MyTable', backref='parent', remote_side=[id])
 
 class Addresses(Base):
     __tablename__ = 'addresses'
@@ -54,12 +39,3 @@ class Addresses(Base):
 
 listen(Addresses, "before_insert", Addresses.increment)
 session.close()
-
-
-    # Establish the relationship between Addresses and PhoneNumbers
-    #phone_number = relationship('PhoneNumbers', back_populates='addresses')
-
-# Replace 'postgresql://username:password@localhost:5432/your_database_name' with your actual PostgreSQL connection URL
-
-
-

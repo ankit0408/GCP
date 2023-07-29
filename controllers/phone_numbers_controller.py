@@ -3,6 +3,9 @@ from models import Session, Addresses
 from address_autofilling_utils import extract_entities, match_entities
 from vertexai.preview.language_models import TextGenerationModel
 
+from prompts.AER_Only_Prompt import prompt as aer_prompt
+from prompts.Entity_Matching_Prompt import prompt as entities_matching_prompt
+
 parameters = {
         "temperature": 0.0,
         "max_output_tokens": 256,
@@ -43,9 +46,17 @@ def get_entities_by_complete_address():
     try:
         session = Session()
         request_data = request.get_json()
+        id = request_data.get("id")
         print("request: ", request_data)
 
-        id = int(request_data['id'])
+        if(id==None):
+            raise ValueError("id not present in the input")
+
+        if(type(int(id)) != int):
+            raise TypeError("Expected integer value for id")
+
+
+        id = int(id)
         db_entities = session.query(Addresses).with_entities(Addresses.entities, 
                                                             ).filter_by(
                         id = id).first()
@@ -59,12 +70,12 @@ def get_entities_by_complete_address():
 
 
         client_entities = request_data['client_entities']    
-        client_entities = client_entities.split(',')
+        # client_entities = client_entities.split(',')
         print("client entities: " ,client_entities)
 
 
 
-        client_entities_mapping = match_entities(client_entities, db_entities, model, parameters)
+        client_entities_mapping = match_entities(client_entities, db_entities, entities_matching_prompt, model, parameters)
         print(client_entities_mapping)
 
         # Call text-bison here for entity extraction for the required form.
@@ -93,8 +104,9 @@ def store_address():
     print("complete_address: ", complete_address)
 
     print("\nconcatenated address:" , input_payload)
-    entities = extract_entities(input_payload, model, parameters)
-    print(entities)
+    entities = extract_entities(input_payload, aer_prompt, model, parameters)
+    
+    print("\nEntities: ", entities)
 
 
     session = Session()

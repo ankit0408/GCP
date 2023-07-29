@@ -11,7 +11,6 @@ phone_routes.route('/api/phone_numbers/<phone_number>/addresses', methods=['GET'
 # Define the route for getting entities by complete address
 phone_routes.route('/api/addresses/entities', methods=['POST'])(get_entities_by_complete_address)
 
-# phone_routes.route('/api/store_address_entities', methods=['POST'])(store_contact)
-
+# Define the route for storing the user address
 phone_routes.route('/api/store_address', methods=['POST'])(store_address)
 
