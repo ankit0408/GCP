@@ -80,7 +80,7 @@ def get_entities_by_complete_address():
         # client_entities_mapping = match_entities(client_entities, db_entities, entities_matching_prompt, model, parameters)
         
         ### Prompt: Matching Database entities with values directly with client_entities
-        client_entities_mapping = match_data_with_client_entities(db_entities, client_entities, entities_matching_prompt, model, parameters)
+        client_entities_mapping = match_data_with_client_entities(db_entities, client_entities, reverse_aer_prompt, model, parameters)
         
         print(client_entities_mapping)
 

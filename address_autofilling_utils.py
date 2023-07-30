@@ -125,16 +125,21 @@ def match_entities(client_entities, database_entities_dict, entities_matching_pr
     return response
 
 
-def match_data_with_client_entities(source_address_entities, destination_address_entities, reverse_aer_prompt,  model, parameters):
-    """Extracts entities from user address"""
+def match_data_with_client_entities(source_address_entities, destination_address_entities_list, reverse_aer_prompt,  model, parameters):
+    """Maps values from source_address_entities (dict) to items in destination_address_entities_list"""
     
-    if((source_address_entities is None) or (destination_address_entities is None) or
-       (len(source_address_entities)==0) or (len(destination_address_entities)==0)):
+    if((source_address_entities is None) or (destination_address_entities_list is None) or
+       (len(source_address_entities)==0) or (len(destination_address_entities_list)==0)):
         return None
     
-    user_input = f'"""input: <<<"source_address_entities": {source_address_entities}>>> \n <<<"destination_address_entities": {destination_address_entities}>>>\n"""'
+    # user_input = f'input: <<<"source_address_entities": {source_address_entities}>>> \n <<<"destination_address_entities": {destination_address_entities_list}>>>\n'
+    # output = "output: "
+
+    user_input = """input: <<<"source_address_entities": """ + str(source_address_entities) + """\n<<<"destination_address_entities": """ + str(destination_address_entities_list) + ">>>\n"
     output = "output: "
 
+
+    print("user input: ", user_input)
 
     response = model.predict(prompt = reverse_aer_prompt + user_input + output,
         **parameters
@@ -169,11 +174,11 @@ if __name__ == "__main__":
         print("\nExtract Entities Response: ", response)
 
 
-        client_entities = ['pincode', 'state', 'locality', 'landmark', 'city']
+        client_entities = ['name', 'pincode', 'flat', 'area', 'locality', 'state']
 
         # database_entities_dict = {'door_number': '103', 'floor': '1st', 'society': 'tirumala towers', 'locality': 'new indhara nager', 'city': 'tirupathi', 'state': 'andhra pradesh'}
-        # database_entities_dict = {'society': '3g homes', 'locality': 'kadugodi', 'city': 'bangalore', 'state': 'karnataka', 'pincode': '560067'}
-        database_entities_dict = response
+        database_entities_dict = {'society': '3g homes', 'locality': 'kadugodi', 'city': 'bangalore', 'state': 'karnataka', 'pincode': '560067'}
+        # database_entities_dict = response
 
 
 
