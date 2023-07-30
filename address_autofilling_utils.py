@@ -165,8 +165,11 @@ if __name__ == "__main__":
 
     # user_address = """{28/4/45} Mypadu Road Near Rajgopal Rice Mill,nan,nan,nan,Nellore,Andhra Pradesh"""
     # user_address = """9 2  vakula malika  thirumazhisai street  east tambaram  chennai,nan,nan,nan,Kanchipuram,Tamil Nadu"""
-    user_address = """c/o Mr. Nand Lal Sharma K-151, Mali Mohalla, Krishna Ganj, Near Anasagar, Ajmer Rajasthan,nan,nan,nan,AJMER,Rajasthan"""
-    user_address = """"{847}  near navjivini school old sular VPO sular patiala,nan,nan,nan,patiala,Punjab"""
+    # user_address = """c/o Mr. Nand Lal Sharma K-151, Mali Mohalla, Krishna Ganj, Near Anasagar, Ajmer Rajasthan,nan,nan,nan,AJMER,Rajasthan"""
+    user_address = """{847}  near navjivini school old sular VPO sular patiala,nan,nan,nan,patiala,Punjab"""
+    user_address = """"Mahavir nagar malout ward {no.8} Gali no.3  ashok mehta gali,nan,nan,nan,malout,Punjab"""
+    user_address = """Above Bank of Baroda  opposite police station  Kiratpur  Bijnor   Landmark Kiratpur,nan,nan,nan,Bijnor,Uttar Pradesh"""
+
 
     response = extract_entities(user_address,aer_prompt, model, parameters)
 
@@ -177,13 +180,13 @@ if __name__ == "__main__":
         client_entities = ['name', 'pincode', 'flat', 'area', 'locality', 'state']
 
         # database_entities_dict = {'door_number': '103', 'floor': '1st', 'society': 'tirumala towers', 'locality': 'new indhara nager', 'city': 'tirupathi', 'state': 'andhra pradesh'}
-        database_entities_dict = {'society': '3g homes', 'locality': 'kadugodi', 'city': 'bangalore', 'state': 'karnataka', 'pincode': '560067'}
-        # database_entities_dict = response
+        # database_entities_dict = {'society': '3g homes', 'locality': 'kadugodi', 'city': 'bangalore', 'state': 'karnataka', 'pincode': '560067'}
+        database_entities_dict = response
 
 
 
         client_entities_mapping = match_entities(client_entities, database_entities_dict, entities_matching_prompt, model, parameters)
-        print("\nEntities matching prompt response: ", client_entities_mapping)
+        print("\nOld Entities matching prompt response: ", client_entities_mapping)
         
         client_entities_mapping = match_data_with_client_entities(database_entities_dict, client_entities, reverse_aer_prompt, model, parameters)
         print("\nReverse AER prompt response: ", client_entities_mapping)

@@ -1,9 +1,9 @@
 prompt = """Your only task is to map meaningful address entities from an input json object named \"source_address_entities\" (enclosed within <<<>>>) to values in \"destination_address_entities\" (also enclosed within <<<>>>) which is a list of various different kinds of address entities where each entity is enclosed within double quotes. Your task is to fill appropriate values from \"source_address_entities\" into \"destination_address_entities\". 
 
-To fill appropriate values from \"source_address_entities\" into \"destination_address_entities\" you should use your background knowledge about the address entities. For example:
+To fill appropriate values from \"source_address_entities\" into \"destination_address_entities\" you should use your background knowledge about the address entities. You must keep the following instructions in mind:
 
 1. You know how an Indian pincode (6 digits) is different from a mobile number and hence these two won\'t be matched together. 
-2. Similarly how a state/locality/sub_locality/landmark are difference from each other on the basis of region covered by these entities. 
+2. Similarly how a state/locality/sub_locality are different from landmark on the basis of region covered by these entities. Hence you cannot map these entities together. 
 3. \"name\" key from \"source_address_entities\" can only be matched with a value containing \"name\" in the \"destination_address_entities\". That is you cannot map \"door\"/\"road\"/etc to name in the ouptut
 
 Your output must be in json format where the key is a value from the list \"destination_address_entities\". Each key in the output can have one or multiple values which should come from the input \"source_address_entities\". You must make sure that you don\'t use the same part of input from \"source_address_entities\" as value in two different keys for the output.
@@ -247,7 +247,7 @@ input: <<<source_address_entities\": {\'door\': \'9 2\', \'road\': \'Thirumazhis
 output: {
 \"pincode\": \"600059\",
  \"state\": \"Tamil Nadu\",
- \"locality\": \"East Tambaram\",
+ \"locality\": \"Vakula Malika, East Tambaram\",
  \"city\": \"Chennai\"
 }
 
@@ -295,13 +295,12 @@ input: <<<source_address_entities\": {
 \"phone_number\": \"9832023324\"
 }>>>
 
-<<<destination_address_entities\": [\"Full Name\", \"Address Line 1\", \"Address Line 2\", \"Address Line 3\", \"State\", \"Pincode\"]>>>
+<<<destination_address_entities\": [\"Full Name\", \"Address Line 1\", \"Address Line 2\", \"Address Line 3\", \"State\"]>>>
 output: {
 \"Address Line 1\": \"69/38, B-6, P-85, Ward No. VIII (8), Mangturam Compound\",
 \"Address Line 2\": \"Near Rajasthan Guest House\",
 \"Address Line 3\": \"Nayabazar, Siliguri\",
-\"State\": \"West Bengal\",
-\"Pincode\": \"734005\"
+\"State\": \"West Bengal\"
 }
 
 
@@ -329,4 +328,17 @@ output: {
 \"Pincode\": \"122022\"
 }
 
+
+input: <<<\"source_address_entities\": {\'name\': \'Ankit Kumar\', \'door\': \'205\', \'building\': \'Sai Shree Apartment\', \'sub_locality\': \'Tetartoli\', \'city\': \'Bariatu\', \'state\': \'Jharkhand\', \'country\': \'India\', \'phone_number\': \'8092336500\', \'pincode\': \'835201\'}>>> 
+
+ <<<\"destination_address_entities\": [\'name\', \'country\', \'pincode\', \'flat/House no./Building/Company/Apartment\', \'area/street\', \'city/district/town\', \'state\', \'landmark\']>>>
+output: {
+\"name\": \"Ankit Kumar\",
+\"country\": \"India\",
+\"pincode\": \"835201\",
+\"flat/House no./Building/Company/Apartment\": \"205, Sai Shree Apartment\",
+\"area/street\": \"Tetartoli\",
+\"city/district/town\": \"Bariatu\",
+\"state\": \"Jharkhand\"
+}
 """

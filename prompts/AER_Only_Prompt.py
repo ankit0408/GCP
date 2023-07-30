@@ -12,7 +12,8 @@ You must make sure to stick to the task of address entity extraction. You must n
 
 input: <<<\"source_address_entities\" : {\"name\": \"mohit\", \"pincode\": \"110078\", \"locality\": \"sector 13, dwarka\", \"address\": \"flat 520, 3rd floor rosewood apartment, sector 13, dwarka, new delhi\",
 \"city/district/town\": \"dwarka\",
-\"state\": \"delhi\", \"landmark\": \"near abhinav global school\", \"address type\": \"home\"}>>>
+\"state\": \"delhi\", \"landmark\": \"near abhinav global school\", \"address type\": \"home\"}>>><<<\"source_address_entities\" : {\"address\": \"{11} 
+ vengthar YMA HALL thlang,nan,nan,nan,khawzawl,Mizoram\"\"}>>>
 output: {
 \"name\": \"Mohit\",
 \"pincode\": \"110078\",
@@ -83,7 +84,7 @@ output: {
 input: <<<\"source_address_entities\": { \"address\": 
 \"house no 91 anandamath sukhbir bhawan,,nan,nan,nan,Tura,Meghalaya\"}>>>
 output: {
-\"door\": \"House No 91\",
+\"door\": \"House No. 91\",
 \"building\": \"Anandamath Sukhbir Bhawan\",
 \"city\": \"Tura\",
 \"state\": \"Meghalaya\",
@@ -202,8 +203,7 @@ output: {
 input: <<<\"source_address_entities\" : {\"address\": \"\"H NO-69/38, WARD NO. VIII (8), B-6, P-85, NEAR RAJASHTHAN GUEST HOUSE, MANGUTARAM COMPOUND, NAYABAZAR, SILIGURI-734005, MO:-9832023324,nan,nan,nan,Mangpong Forest,West Bengal\"\"}>>>
 output: {
 \"door\": \"69/38\",
-\"sub_locality\": \"Ward No. VIII (8), Mangturam Compound\",
-\"road\": \"B-6, P-85\",
+\"sub_locality\": \"Ward No. VIII (8), B-6, P-85, Mangturam Compound\",
 \"landmark\": \"Near Rajasthan Guest House\",
 \"locality\": \"Nayabazar\",
 \"city\": \"Siliguri\",
@@ -216,7 +216,7 @@ output: {
 
 input: <<<\"source_address_entities\" : {\"address\": \"HARIMONI ALAM PAN SHOP SURAJPUR  ASURAGAR  NIAMATPUR,nan,nan,nan,DALKOLA,West Bengal\"}>>>
 output: {
-\"door\": \"HARIMONI ALAM PAN SHOP\",
+\"door\": \"Harimoni Alam Pan Shop\",
 \"sub_locality\": \"Surajpur\",
 \"village\": \"Asuragar\",
 \"locality\": \"Niamatpur\",
@@ -266,7 +266,7 @@ output: {
 
 input: <<<\"source_address_entities\" : {\"address\": \"Arihant,50, Jawahar marg, Thandla,Ganesh Mandir,nan,nan,nan,THANDLA,Madhya Pradesh\"}>>>
 output: {
-\"door\": \"Arihant\",
+\"name\": \"Arihant\",
 \"road\": \"50, Jawahar Marg\",
 \"landmark\": \"Ganesh Mandir\",
 \"city\": \"Thandla\",
@@ -342,7 +342,7 @@ output: {
 
 input: <<<\"source_address_entities\" : {\"address\": \"Parvati\' nilkanth park main road, near shramshraddha chowk, beside Bhagwati Caterers  Rajkot, Gujarat,nan,nan,nan,Rajkot,Gujarat\"}>>>
 output: {
-\"door\": \"Parvati\",
+\"name\": \"Parvati\",
 \"road\": \"Nilkanth Park Main Road\",
 \"landmark\": \"Near Shramshraddha Chowk, Beside Bhagwati Caterers\",
 \"city\": \"Rajkot\",
@@ -364,5 +364,66 @@ output: {
 \"state\": \"Uttar Pradesh\",
 \"country\": \"India\",
 \"pincode\": \"201005\"
+}
+
+
+input: <<<\"source_address_entities\" : {\"address\": \"\"Harleen kaur D/O  Gurpreet Singh VPO Nagal Lubana 
+ Nadala Road,nan,nan,nan,Kapurthalla,Punjab\"}>>>
+output: {
+\"name\": \"Harleen Kaur D/O Gurpreet Singh\",
+\"sub_locality\": \"Nagal Lubana\",
+\"road\": \"Nadala Road\",
+\"city\": \"Kapurthala\",
+\"state\": \"Punjab\",
+\"country\": \"India\",
+\"pincode\": \"144631\"
+}
+
+
+input: <<<\"source_address_entities\" : {\"address\": \"Rtilal panchal,Vishwakarma Mandir Chitra,Chitra,nan,nan,nan,Dungarpur,Rajasthan\"}>>>
+output: {
+\"name\": \"Rtilal Panchal\",
+\"building\": \"Vishwakarma Mandir\",
+\"locality\": \"Chitri\",
+\"city\": \"Dungarpur\",
+\"state\": \"Rajasthan\",
+\"country\": \"India\",
+\"pincode\": \"314035\"
+}
+
+
+input: <<<\"source_address_entities\" : {\"address\": \"{11} 
+ vengthar YMA HALL thlang,nan,nan,nan,khawzawl,Mizoram\"\"}>>>
+output: {
+\"door\": \"11\",
+\"sub_locality\": \"Vengthar YMA Hall Thlang\",
+\"city\": \"Khawzawl\",
+\"state\": \"Mizoram\",
+\"country\": \"India\",
+\"pincode\": \"796310\"
+}
+
+
+input: <<<\"source_address_entities\" : {\"address\": \"\"Mahavir nagar malout ward {no.8} Gali no.3 
+ ashok mehta gali,nan,nan,nan,malout,Punjab\"}>>>
+output: {
+\"sub_locality\": \"Ward No. 8, Mahavir Nagar\",
+\"road\": \"Gali No.3, Ashok Mehta Gali\",
+\"city\": \"Malout\",
+\"state\": \"Punjab\",
+\"country\": \"India\",
+\"pincode\": \"152107\"
+}
+
+
+input: <<<\"source_address_entities\" : {\"address\": \"Ambal hotel- opposite bustsand.  Radhapuram-tirunelveli,nan,nan,nan,Tirunelveli District,Tamil Nadu\"}>>>
+output: {
+\"building\": \"Ambal Hotel\",
+\"landmark\": \"Opposite Bus Stand\",
+\"tehsil\": \"Radhapuram\",
+\"city\": \"Tirunelveli\",
+\"state\": \"Tamil Nadu\",
+\"country\": \"India\",
+\"pincode\": \"627111\"
 }
 """
