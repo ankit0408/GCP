@@ -455,4 +455,16 @@ output: {
 \"country\": \"India\",
 \"pincode\": \"700090\"
 }
+
+
+input: <<<\"source_address_entities\": {\'Complete Address\':  \'Drools, dwakra Sector 10, Delhi, below dwarka sector 10 metro station\"}
+output: {
+\"name\": \"Drools\",
+\"locality\": \"Sector 10\",
+\"city\": \"Dwarka\",
+\"state\": \"Delhi\",
+\"country\": \"India\",
+\"pincode\": \"110075\",
+\"landmark\": \"below dwarka sector 10 metro station\"
+}
 """
