@@ -106,13 +106,15 @@ def store_address():
 
     input_payload = str(data)
 
-    complete_address = ", ".join([str(data[key]) for key in data if((data[key]) and (key != "phone"))])
-    print("complete_address: ", complete_address)
+
 
     print("\nconcatenated address:" , input_payload)
     entities = extract_entities(input_payload, aer_prompt, model, parameters)
     
     print("\nEntities: ", entities)
+
+    complete_address = ", ".join([str(entities[key]) for key in entities if((entities[key]) and (key != "phone_number"))])
+    print("complete_address: ", complete_address)
 
 
     session = Session()
