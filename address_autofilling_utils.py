@@ -138,7 +138,7 @@ def match_data_with_client_entities(source_address_entities, destination_address
     # user_input = f'input: <<<"source_address_entities": {source_address_entities}>>> \n <<<"destination_address_entities": {destination_address_entities_list}>>>\n'
     # output = "output: "
 
-    user_input = """input: <<<"source_address_entities": """ + str(source_address_entities) + """\n<<<"destination_address_entities": """ + str(destination_address_entities_list) + ">>>\n"
+    user_input = """input: <<<"source_address_entities": """ + str(source_address_entities) + """>>> \n<<<"destination_address_entities": """ + str(destination_address_entities_list) + ">>>\n"
     output = "output: "
 
 

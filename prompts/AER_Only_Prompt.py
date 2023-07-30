@@ -50,7 +50,6 @@ output: {
 \"city\": \"Visakhapatnam\",
 \"state\": \"Andhra Pradesh\",
 \"country\": \"India\",
-\"pincode\": \"530027\",
 \"landmark\": \"Mpup school\"
 }
 
@@ -62,8 +61,7 @@ output: {
 \"locality\": \"Sarita Vihar\",
 \"city\": \"New Delhi\",
 \"state\": \"Delhi\",
-\"country\": \"India\",
-\"pincode\": \"110076\"
+\"country\": \"India\"
 }
 
 
@@ -89,8 +87,7 @@ output: {
 \"building\": \"Anandamath Sukhbir Bhawan\",
 \"city\": \"Tura\",
 \"state\": \"Meghalaya\",
-\"country\": \"India\",
-\"pincode\": \"794001\"
+\"country\": \"India\"
 }
 
 
@@ -102,8 +99,7 @@ output: {
 \"road\": \"Sachivalaya Marg\",
 \"city\": \"Bhubaneswar\",
 \"state\": \"Odisha\",
-\"country\": \"India\",
-\"pincode\": \"751022\"
+\"country\": \"India\"
 }
 
 
@@ -113,8 +109,7 @@ output: {
 \"sub_locality\": \"Arera Colony\",
 \"city\": \"Bhopal\",
 \"state\": \"Madhya Pradesh\",
-\"country\": \"India\",
-\"pincode\": \"462016\"
+\"country\": \"India\"
 }
 
 
@@ -124,7 +119,6 @@ output: {
 \"city\": \"Morena\",
 \"state\": \"Madhya Pradesh\",
 \"country\": \"India\",
-\"pincode\": \"476001\",
 \"landmark\": \"Piparee Road\"
 }
 
@@ -137,7 +131,6 @@ output: {
 \"city\": \"Chennai\",
 \"state\": \"Tamil Nadu\",
 \"country\": \"India\",
-\"pincode\": \"600092\",
 \"phone_number\": \"9841572024\"
 }
 
@@ -151,8 +144,7 @@ output: {
 \"landmark\": \"Near FCI Godown\",
 \"district\": \"Bengaluru\",
 \"state\": \"Karnataka\",
-\"country\": \"India\",
-\"pincode\": \"560067\"
+\"country\": \"India\"
 }
 
 
@@ -171,8 +163,7 @@ output: {
 \"landmark\": \"Near Rajgopal Rice Mill\",
 \"city\": \"Nellore\",
 \"state\": \"Andhra Pradesh\",
-\"country\": \"India\",
-\"pincode\": \"524002\"
+\"country\": \"India\"
 }
 
 
@@ -183,8 +174,7 @@ output: {
 \"landmark\": \"Near Big Mosque\",
 \"city\": \"Vandavasi\",
 \"state\": \"Tamil Nadu\",
-\"country\": \"India\",
-\"pincode\": \"604408\"
+\"country\": \"India\"
 }
 
 
@@ -196,8 +186,7 @@ output: {
 \"landmark\": \"Near Sai Baba Temple\",
 \"city\": \"Hyderabad\",
 \"state\": \"Telangana\",
-\"country\": \"India\",
-\"pincode\": \"500039\"
+\"country\": \"India\"
 }
 
 
@@ -223,8 +212,7 @@ output: {
 \"locality\": \"Niamatpur\",
 \"city\": \"Dalkhola\",
 \"state\": \"West Bengal\",
-\"country\": \"India\",
-\"pincode\": \"733209\"
+\"country\": \"India\"
 }
 
 
@@ -234,8 +222,7 @@ output: {
 \"tehsil\": \"Kalampur\",
 \"city\": \"Kalahandi\",
 \"state\": \"Odisha\",
-\"country\": \"India\",
-\"pincode\": \"766017\"
+\"country\": \"India\"
 }
 
 
@@ -246,8 +233,7 @@ output: {
 \"landmark\": \"Near PHED Complex\",
 \"city\": \"Khawzawl\",
 \"state\": \"Mizoram\",
-\"country\": \"India\",
-\"pincode\": \"796310\"
+\"country\": \"India\"
 }
 
 
@@ -260,8 +246,7 @@ output: {
 \"district\": \"Kolhapur\",
 \"city\": \"Ichalkaranji\",
 \"state\": \"Maharashtra\",
-\"country\": \"India\",
-\"pincode\": \"416115\"
+\"country\": \"India\"
 }
 
 
@@ -272,8 +257,7 @@ output: {
 \"landmark\": \"Ganesh Mandir\",
 \"city\": \"Thandla\",
 \"state\": \"Madhya Pradesh\",
-\"country\": \"India\",
-\"pincode\": \"454331\"
+\"country\": \"India\"
 }
 
 
@@ -284,8 +268,7 @@ output: {
 \"landmark\": \"Near Laksdup Guest House\",
 \"city\": \"Leh\",
 \"state\": \"Ladakh\",
-\"country\": \"India\",
-\"pincode\": \"194101\"
+\"country\": \"India\"
 }
 
 
@@ -297,8 +280,7 @@ output: {
 \"road\": \"Lingsugur Road\",
 \"city\": \"Raichur\",
 \"state\": \"Karnataka\",
-\"country\": \"India\",
-\"pincode\": \"584101\"
+\"country\": \"India\"
 }
 
 
@@ -308,8 +290,7 @@ output: {
 \"locality\": \"Chira Chas\",
 \"city\": \"Bokaro\",
 \"state\": \"Jharkhand\",
-\"country\": \"India\",
-\"pincode\": \"827015\"
+\"country\": \"India\"
 }
 
 
@@ -320,8 +301,7 @@ output: {
 \"tehsil\": \"Arki\",
 \"district\": \"Solan\",
 \"state\": \"Himachal Pradesh\",
-\"country\": \"India\",
-\"pincode\": \"171102\"
+\"country\": \"India\"
 }
 
 
@@ -335,7 +315,6 @@ output: {
 \"city\": \"Gurgaon\",
 \"state\": \"Haryana\",
 \"country\": \"India\",
-\"pincode\": \"122022\",
 \"phone_number\": \"5462356639\"
 }
 
@@ -347,8 +326,7 @@ output: {
 \"landmark\": \"Near Shramshraddha Chowk, Beside Bhagwati Caterers\",
 \"city\": \"Rajkot\",
 \"state\": \"Gujarat\",
-\"country\": \"India\",
-\"pincode\": \"360002\"
+\"country\": \"India\"
 }
 
 
@@ -362,8 +340,7 @@ output: {
 \"road\": \"Tilamode Road\",
 \"city\": \"Ghaziabad\",
 \"state\": \"Uttar Pradesh\",
-\"country\": \"India\",
-\"pincode\": \"201005\"
+\"country\": \"India\"
 }
 
 
@@ -375,8 +352,7 @@ output: {
 \"road\": \"Nadala Road\",
 \"city\": \"Kapurthala\",
 \"state\": \"Punjab\",
-\"country\": \"India\",
-\"pincode\": \"144631\"
+\"country\": \"India\"
 }
 
 
@@ -387,8 +363,7 @@ output: {
 \"village\": \"Chitri\",
 \"city\": \"Dungarpur\",
 \"state\": \"Rajasthan\",
-\"country\": \"India\",
-\"pincode\": \"314035\"
+\"country\": \"India\"
 }
 
 
@@ -399,8 +374,7 @@ output: {
 \"sub_locality\": \"Vengthar YMA Hall Thlang\",
 \"city\": \"Khawzawl\",
 \"state\": \"Mizoram\",
-\"country\": \"India\",
-\"pincode\": \"796310\"
+\"country\": \"India\"
 }
 
 
@@ -412,8 +386,7 @@ output: {
 \"road\": \"Gali No.3, Ashok Mehta Gali\",
 \"city\": \"Malout\",
 \"state\": \"Punjab\",
-\"country\": \"India\",
-\"pincode\": \"152107\"
+\"country\": \"India\"
 }
 
 
@@ -424,8 +397,7 @@ output: {
 \"tehsil\": \"Radhapuram\",
 \"city\": \"Tirunelveli\",
 \"state\": \"Tamil Nadu\",
-\"country\": \"India\",
-\"pincode\": \"627111\"
+\"country\": \"India\"
 }
 
 
@@ -438,13 +410,12 @@ output: {
 \"landmark\": \"Simla By Pass Near St Judes School\",
 \"city\": \"Dehradun\",
 \"state\": \"Uttarakhand\",
-\"country\": \"India\",
-\"pincode\": \"248001\"
+\"country\": \"India\"
 }
 
 
 input: <<<\"source_address_entities\" : {\"Flat, House no., Building, Company,Apartment:
-\": \"{5/1/g,} Agamani apparent \", \"Area/Street\": \"Sambhu Nath Das Lane\", \"City/District/Town\": \"Kolkata\": , \"State\": \"West Bengal\" , \"Landmark\": \"Rickshaw stand\", \"Country\": \"India\" }>>>
+\": \"{5/1/g,} Agamani apparent \", \"Area/Street\": \"Sambhu Nath Das Lane\", \"City/District/Town\": \"Kolkata\": , \"State\": \"West Bengal\" , \"Landmark\": \"Rickshaw stand\", \"Country\": \"India\", \"\"zipcode\": \"700090\" }>>>
 output: {
 \"door\": \"5/1/g\",
 \"building\": \"Agamani Appartment\",
@@ -457,7 +428,7 @@ output: {
 }
 
 
-input: <<<\"source_address_entities\": {\'Complete Address\':  \'Drools, dwakra Sector 10, Delhi, below dwarka sector 10 metro station\"}
+input: <<<\"source_address_entities\": {\'Complete Address\':  \'Drools, dwakra Sector 10, Delhi, below dwarka sector 10 metro station\", \"pin\": \"110075\"}
 output: {
 \"name\": \"Drools\",
 \"locality\": \"Sector 10\",
@@ -466,5 +437,14 @@ output: {
 \"country\": \"India\",
 \"pincode\": \"110075\",
 \"landmark\": \"below dwarka sector 10 metro station\"
+}
+
+
+input: <<<\"source_address_entities\": {\'Complete Address\':  \'new patakura,,nan,nan,nan,Cooch Behar,West Bengal\"}
+output: {
+\"sub_locality\": \"New Patakura\",
+\"city\": \"Cooch Behar\",
+\"state\": \"West Bengal\",
+\"country\": \"India\"
 }
 """

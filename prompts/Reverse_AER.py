@@ -4,8 +4,9 @@ To fill appropriate values from \"source_address_entities\" into \"destination_a
 
 1. You know how an Indian pincode (6 digits) is different from a mobile number and hence these two won\'t be matched together. 
 2. A state/locality/sub_locality/landmark is different from each other on the basis of region covered by each address entity. Hence you cannot map these entities amongst each other. 
-3. \"name\" key from \"source_address_entities\" can only be matched with a value containing \"name\" in the \"destination_address_entities\". That is you cannot map \"door\"/\"road\"/etc to name in the ouptut.
+3. \"name\" key from \"source_address_entities\" should only be matched with a \"name\" related entity in the \"destination_address_entities\". That is you cannot map values from door/road/society etc to a name entity in the ouptut.
 4. If an address entity from \"source_address_entities\" matches exactly with an entity from \"destination_address_entities\" then you must map always them as it is.
+5. If you do not have a value for pincode in \"source_address_entities\" then you must not show any value for pincode in the \"destination_address_entities\"
 
 
 Your output must be in json format where the key is a value from the list \"destination_address_entities\". Each key in the output can have one or multiple values which should come from the input \"source_address_entities\". You must make sure that you don\'t use the same part of input from \"source_address_entities\" as value in two different keys for the output.
@@ -71,13 +72,12 @@ input: <<<source_address_entities\": {
 \"country\": \"India\"
 }>>>
 
-<<<destination_address_entities\": [\"Full Name\", \"Address (Area and Street)\", \"Town/District\", \"State\", \"Pincode\"]>>>
+<<<destination_address_entities\": [\"Full Name\", \"Address (Area and Street)\", \"Town/District\", \"State\"]>>>
 output: {
 \"Full Name\": \"Sunil Mahala\",
 \"Address (Area and Street)\": \"Delhivery Corporate Office\",
 \"Town/District\": \"Gurgaon\",
-\"State\": \"Haryana\",
-\"Pincode\": \"122003\"
+\"State\": \"Haryana\"
 }
 
 
@@ -170,8 +170,8 @@ input: <<<source_address_entities\": {
 }>>>
 
 <<<destination_address_entities\": [\"full name\", \"address (area and street)\", \"city/district/town\", \"state\", \"landmark\"]>>>
-output: {\"
-address (area and street)\": \"Flat number 507, Pocket b, Sarita Vihar\",
+output: {
+\"address (area and street)\": \"Flat number 507, Pocket b, Sarita Vihar\",
 \"city/district/town\": \"New Delhi\",
 \"state\": \"Delhi\"
 }
@@ -185,9 +185,9 @@ input: <<<source_address_entities\": {
 \"pincode\": \"759039\",\"landmark\": \"Near Shiv temple\"
 }>>>
 
-<<<destination_address_entities\": [\"full name\", \"address (area and street)\", \"city/district/town\", \"state\", \"landmark\"]>>>
-output: {\"
-address (area and street)\": \"8, Rahani, Talasahi, Birasal\",
+<<<destination_address_entities\": [\"zipcode\": \"full name\", \"address (area and street)\", \"city/district/town\", \"state\", \"landmark\"]>>>
+output: {
+\"address (area and street)\": \"8, Rahani, Talasahi, Birasal\",
 \"city/district/town\": \"Dhenkanal\",
 \"state\": \"Odisha\",
 \"landmark\": \"Near Shiv temple\"
@@ -205,8 +205,8 @@ input: <<<source_address_entities\": {
 }>>>
 
 <<<destination_address_entities\": [\"Name\", \"Mobile\", \"Pincode\", \"State\", \"Address (House no, Building, Street, Area)\", \"Locality/Town\", \"City/District\"]>>>
-output: {\"
-Pincode\": \"751022\",
+output: {
+\"Pincode\": \"751022\",
 \"State\": \"Odisha\",
 \"Address (House no, Building, Street, Area)\": \"Asutosh Hostel, Sachivalaya Marg, Regional Institute of Education\",
 \"City/District\": \"Bhubaneswar\"
@@ -271,16 +271,18 @@ input: <<<source_address_entities\": {
 \"city\": \"Bageshwar\",
 \"state\": \"Uttarakhand\",
 \"country\": \"India\",
-\"pincode\": \"263641\"
+\"pincode\": \"263641\",
+\"landmark\": \"Hanuman Mandir\"
 }>>>
 
-<<<destination_address_entities\": [\"Full Name\", \"Address Line 1\", \"Address Line 2\", \"Address Line 3\", \"State\", \"Pincode\"]>>>
+<<<destination_address_entities\": [\"Full Name\", \"Address Line 1\", \"Address Line 2\", \"Address Line 3\", \"State\", \"Pincode\", \"POI\"]>>>
 output: {
 \"Address Line 1\": \"189, Bajnath Road\",
 \"Address Line 2\": \"Bageshwar\",
 \"Address Line 3\": \"Uttarakhand\",
 \"State\": \"Uttarakhand\",
-\"Pincode\": \"263641\"
+\"Pincode\": \"263641\",
+\"POI\": \"Hanuman Mandir\"
 }
 
 
@@ -297,7 +299,7 @@ input: <<<source_address_entities\": {
 \"phone_number\": \"9832023324\"
 }>>>
 
-<<<destination_address_entities\": [\"Full Name\", \"Address Line 1\", \"Address Line 2\", \"Address Line 3\", \"State\"]>>>
+<<<destination_address_entities\": [\"Full Name\", \"Address Line 2\", \"Address Line 1\", \"Address Line 3\", \"State\"]>>>
 output: {
 \"Address Line 1\": \"69/38, B-6, P-85, Ward No. VIII (8), Mangturam Compound\",
 \"Address Line 2\": \"Near Rajasthan Guest House\",
@@ -333,11 +335,10 @@ output: {
 
 input: <<<\"source_address_entities\": {\'name\': \'Ankit Kumar\', \'door\': \'205\', \'building\': \'Sai Shree Apartment\', \'sub_locality\': \'Tetartoli\', \'city\': \'Bariatu\', \'state\': \'Jharkhand\', \'country\': \'India\', \'phone_number\': \'8092336500\', \'pincode\': \'835201\'}>>> 
 
- <<<\"destination_address_entities\": [\'name\', \'country\', \'pincode\', \'flat/House no./Building/Company/Apartment\', \'area/street\', \'city/district/town\', \'state\', \'landmark\']>>>
+ <<<\"destination_address_entities\": [\'name\', \'country\', \'flat/House no./Building/Company/Apartment\', \'area/street\', \'city/district/town\', \'state\', \'landmark\']>>>
 output: {
 \"name\": \"Ankit Kumar\",
 \"country\": \"India\",
-\"pincode\": \"835201\",
 \"flat/House no./Building/Company/Apartment\": \"205, Sai Shree Apartment\",
 \"area/street\": \"Tetartoli\",
 \"city/district/town\": \"Bariatu\",
@@ -382,8 +383,48 @@ output: {
 \"Landmark\": \"Near Abhinav Global School\"
 }
 
+
 input: <<<\"source_address_entities\": {\'name\': \'Anjuwj\', \'door\': \'206\', \'building\': \'Sai Shree Apartment\', \'sub_locality\': \'Harihar Singh Road\', \'locality\': \'Bariatu\', \'city\': \'Ranchi\', \'state\': \'Jharkhand\', \'country\': \'India\', \'pincode\': \'834009\', \'landmark\': \'Near Rims Ranchi\'}>>>
 
 <<<\"destination_address_entities\": [\'name\', \'country\', \'pincode\', \'flat/House no./Building/Company/Apartment\', \'area/street\', \'city/district/town\', \'state\', \'landmark\']>>>
-output:
+output: {
+\"name\": \"Anjuwj\",
+\"country\": \"India\",
+\"pincode\": \"834009\",
+\"flat/House no./Building/Company/Apartment\": \"206, Sai Shree Apartment\",
+\"area/street\": \"Harihar Singh Road\",
+\"city/district/town\": \"Bariatu\",
+\"state\": \"Jharkhand\",
+\"landmark\": \"Near Rims Ranchi\"
+}
+
+
+input: <<<\"source_address_entities\": {\'name\': \'Tanmay Bhat\', \'door\': \'01\', \'sub_locality\': \'Khalishpur Badlapur Jaunpur\', \'city\': \'Badlapur\', \'state\': \'Uttar Pradesh\', \'country\': \'India\', \'landmark\': \'Panchayat Bhavan Hanuman Mandir\'}>>>
+
+<<<\"destination_address_entities\": [\'name\', \'pincode\', \'locality\', \'area\', \'city\', \'state\', \'phone\', \'landmark\']>>>
+output: {
+\"name\": \"Tanmay Bhat\",
+\"locality\": \"Khalishpur Badlapur Jaunpur\",
+\"area\": \"01 Khalishpur\", 
+\"city\": \"Badlapur\",
+\"state\": \"Uttar Pradesh\",
+\"phone\": \"9832023324\",
+\"landmark\": \"Panchayat Bhavan Hanuman Mandir\"
+}
+
+
+input: input: <<<\"source_address_entities\": {\'society\': \'3g homes\', \'locality\': \'kadugodi\', \'city\': \'bangalore\', \'state\': \'karnataka\', \'pincode\': \'560067\'}>>> 
+<<<\"destination_address_entities\": [\'full name\', \'address\']>>>
+output: {
+\"address\": \"3g homes, kadugodi, bangalore, karnataka, 560067\"
+}
+
+
+input: <<<\"source_address_entities\": {\'name\': \'mohit\', \'district\': \'gurgaon\', \'state\': \'haryana\'}>>> 
+<<<\"destination_address_entities\": [\'name\', \'pin\', \'state\', \'Address(House No. Building Area Street)\', \'locality\', \'City/District/Town\']>>>
+output: {
+\"name\": \"mohit\",
+\"state\": \"haryana\",
+\"City/District/Town\": \"gurgaon\"
+}
 """
