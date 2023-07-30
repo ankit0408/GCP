@@ -1,14 +1,16 @@
 prompt = """Your only task is to map meaningful address entities from an input json object named \"source_address_entities\" (enclosed within <<<>>>) to values in \"destination_address_entities\" (also enclosed within <<<>>>) which is a list of various different kinds of address entities where each entity is enclosed within double quotes. Your task is to fill appropriate values from \"source_address_entities\" into \"destination_address_entities\". 
 
-To fill appropriate values from \"source_address_entities\" into \"destination_address_entities\" you should use your background knowledge about the address entities. You must keep the following instructions in mind:
+To fill appropriate values from \"source_address_entities\" into \"destination_address_entities\" you should use your background knowledge about the address entities and geo location. You must keep the following instructions in mind:
 
 1. You know how an Indian pincode (6 digits) is different from a mobile number and hence these two won\'t be matched together. 
-2. Similarly how a state/locality/sub_locality are different from landmark on the basis of region covered by these entities. Hence you cannot map these entities together. 
-3. \"name\" key from \"source_address_entities\" can only be matched with a value containing \"name\" in the \"destination_address_entities\". That is you cannot map \"door\"/\"road\"/etc to name in the ouptut
+2. A state/locality/sub_locality/landmark is different from each other on the basis of region covered by each address entity. Hence you cannot map these entities amongst each other. 
+3. \"name\" key from \"source_address_entities\" can only be matched with a value containing \"name\" in the \"destination_address_entities\". That is you cannot map \"door\"/\"road\"/etc to name in the ouptut.
+4. If an address entity from \"source_address_entities\" matches exactly with an entity from \"destination_address_entities\" then you must map always them as it is.
+
 
 Your output must be in json format where the key is a value from the list \"destination_address_entities\". Each key in the output can have one or multiple values which should come from the input \"source_address_entities\". You must make sure that you don\'t use the same part of input from \"source_address_entities\" as value in two different keys for the output.
 
-Here is list of all possible keys in \"source_address_entities\" = [“name”, “door”,  “floor“, “road“, “building“, “sub_locality“, “tehsil“, “village“, “locality“,  “city“, “state“, “country“, “pincode“, “landmark“, “phone_number”]
+Here is list of all possible keys in \"source_address_entities\" = [\"name\", \"door\",  \"floor\", \"road\", \"building\", \"sub_locality\", \"tehsil\", \"village\", \"locality\",  \"city\", \"district\", \"state\", \"country\", \"pincode\", \"landmark\", \"phone_number\"]
 
 You are only supposed to use an entity from the input \"destination_address_entities\" as key in the output. You must not create your own keys in the output. You should not output a key with an empty value in the output.
 
@@ -341,4 +343,47 @@ output: {
 \"city/district/town\": \"Bariatu\",
 \"state\": \"Jharkhand\"
 }
+
+
+input: <<<source_address_entities\": {
+\"door\": \"8\",\"sub_locality\": \"Rahani\",
+\"tehsil\": \"Talasahi\",
+\"village\": \"Birasal\",\"city\": \"Dhenkanal\",\"state\": \"Odisha\",
+\"country\": \"India\",
+\"pincode\": \"759039\",\"landmark\": \"Near Shiv temple\"
+}>>>
+
+<<<destination_address_entities\": [\"full name\", \"landmark\", \"address (area and street)\", \"city/district/town\", \"state\"]>>>
+output: {
+\"full name\": \"8, Rahani, Talasahi, Birasal\",
+\"landmark\": \"Near Shiv temple\",
+\"address (area and street)\": \"Dhenkanal\",
+\"city/district/town\": \"Odisha\"
+}
+
+
+input: <<<\"source_address_entities\": {
+\"name\": \"Mohit\",
+\"pincode\": \"110078\",
+\"door\": \"Flat 520\",
+\"floor\": \"3rd\",
+\"building\": \"Rosewood Apartment\",
+\"sub_locality\": \"Sector 13\",
+\"landmark\": \"Near Abhinav Global School\",
+\"city\": \"Dwarka\",
+\"state\": \"Delhi\",
+\"country\": \"India\"
+}>>>
+
+<<<destination_address_entities\": [\"Full Name\", \"Address\", \"Landmark\"]>>>
+output: {
+\"Full Name\": \"Mohit\",
+\"Address\": \"Flat 520, 3rd Floor, Rosewood Apartment, Sector 13, Dwarka, Delhi, 110078, near Abhinav Global School\",
+\"Landmark\": \"Near Abhinav Global School\"
+}
+
+input: <<<\"source_address_entities\": {\'name\': \'Anjuwj\', \'door\': \'206\', \'building\': \'Sai Shree Apartment\', \'sub_locality\': \'Harihar Singh Road\', \'locality\': \'Bariatu\', \'city\': \'Ranchi\', \'state\': \'Jharkhand\', \'country\': \'India\', \'pincode\': \'834009\', \'landmark\': \'Near Rims Ranchi\'}>>>
+
+<<<\"destination_address_entities\": [\'name\', \'country\', \'pincode\', \'flat/House no./Building/Company/Apartment\', \'area/street\', \'city/district/town\', \'state\', \'landmark\']>>>
+output:
 """
