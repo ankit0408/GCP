@@ -129,3 +129,39 @@ def store_address():
     session.close()
 
     return jsonify({"message": "Address table entry saved successfully."}), 201
+
+### API t - PUT API - Update user's address
+def update_address(address_id):
+    data = request.get_json()
+    
+    input_payload = str(data)
+
+    complete_address = ", ".join([str(data[key]) for key in data if((data[key]) and (key != "phone"))])
+    print("complete_address: ", complete_address)
+
+    print("\nconcatenated address:" , input_payload)
+    entities = extract_entities(input_payload, aer_prompt, model, parameters)
+    
+    print("\nEntities: ", entities)
+
+
+    session = Session()
+
+    old_data_entry = session.query(Addresses).filter_by(id=address_id).first()
+
+    if old_data_entry:
+        old_data_entry.entities = entities
+        old_data_entry.complete_address = complete_address
+        old_data_entry.input_payload = input_payload
+        
+        session.add(old_data_entry)
+        # Commit the changes to the database
+        session.commit()
+
+        # Close the session
+        session.close()
+
+        return jsonify({"message": "Address table entry updated successfully."}), 200
+    else:
+        # If the address with the given ID doesn't exist, return an error response
+        return jsonify({"error": "Address not found."}), 404
