@@ -21,9 +21,12 @@ def get_entity_ordering_dict():
         "village": 5,
 
         "tehsil": 6,
+        "locality": 6,
 
-        "locality": 7,
-        "city": 8,
+        "city": 7,
+
+        "district": 8,
+
         "state": 9,
         "country": 10,
         "pincode": 11,
