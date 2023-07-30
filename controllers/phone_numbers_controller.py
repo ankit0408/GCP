@@ -1,10 +1,12 @@
 from flask import jsonify, request
 from models import Session, Addresses
-from address_autofilling_utils import extract_entities, match_entities
+from address_autofilling_utils import extract_entities, match_entities, match_data_with_client_entities
 from vertexai.preview.language_models import TextGenerationModel
 
 from prompts.AER_Only_Prompt import prompt as aer_prompt
 from prompts.Entity_Matching_Prompt import prompt as entities_matching_prompt
+from prompts.Reverse_AER import prompt as reverse_aer_prompt
+
 
 parameters = {
         "temperature": 0.0,
@@ -74,8 +76,12 @@ def get_entities_by_complete_address():
         print("client entities: " ,client_entities)
 
 
-
-        client_entities_mapping = match_entities(client_entities, db_entities, entities_matching_prompt, model, parameters)
+        ### Prompt: Matching database entitity names with client entities
+        # client_entities_mapping = match_entities(client_entities, db_entities, entities_matching_prompt, model, parameters)
+        
+        ### Prompt: Matching Database entities with values directly with client_entities
+        client_entities_mapping = match_data_with_client_entities(db_entities, client_entities, entities_matching_prompt, model, parameters)
+        
         print(client_entities_mapping)
 
         # Call text-bison here for entity extraction for the required form.
