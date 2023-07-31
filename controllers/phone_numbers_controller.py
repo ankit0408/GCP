@@ -84,6 +84,7 @@ def get_entities_by_complete_address():
         
         print(client_entities_mapping)
 
+        client_entities_mapping['db_entities'] = db_entities
         # Call text-bison here for entity extraction for the required form.
 
         # Sample response, assuming entities is a list of extracted entities.
@@ -130,7 +131,7 @@ def store_address():
     session.commit()
     session.close()
 
-    return jsonify({"message": "Address table entry saved successfully."}), 201
+    return jsonify({"message": "Address table entry saved successfully.", "entities": entities, "complete_address": complete_address}), 201
 
 ### API t - PUT API - Update user's address
 def update_address(address_id):
@@ -163,7 +164,7 @@ def update_address(address_id):
         # Close the session
         session.close()
 
-        return jsonify({"message": "Address table entry updated successfully."}), 200
+        return jsonify({"message": "Address table entry updated successfully.", "entities": entities, "complete_address": complete_address}), 200
     else:
         # If the address with the given ID doesn't exist, return an error response
         return jsonify({"error": "Address not found."}), 404
