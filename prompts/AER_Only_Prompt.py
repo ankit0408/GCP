@@ -447,4 +447,17 @@ output: {
 \"state\": \"West Bengal\",
 \"country\": \"India\"
 }
+
+
+input: <<<\"source_address_entities\": {\'{\'phone\': \'1234523452\', \'name\': \'Shubham Dudeja\', \'locality\': \'palam\', \'area\': \'raj nagar extension II\', \'city\': \'new delhi\', \'state\': \'delhi\', \'landmark\': \'near jhande wala chowk\'}>>>
+output: {
+\"name\": \"Shubham Dudeja\",
+\"locality\": \"Palam\",
+\"sub_locality\": \"Raj Nagar Extension II\",
+\"landmark\": \"Near Jhande Wala Chowk\",
+\"city\": \"New Delhi\",
+\"state\": \"Delhi\",
+\"country\": \"India\",
+\"phone_number\": \"1234523452\"
+}
 """

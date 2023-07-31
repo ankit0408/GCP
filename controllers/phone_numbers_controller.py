@@ -107,6 +107,7 @@ def store_address():
 
     input_payload = str(data)
 
+    print("\nInput Payload: ", input_payload)
 
 
     print("\nconcatenated address:" , input_payload)
@@ -118,17 +119,19 @@ def store_address():
     print("complete_address: ", complete_address)
 
 
-    session = Session()
+    if(len(entities)>0):
 
-    address_table_entry = Addresses(
-                            phone_number_id=phone_number_str,
-                            entities = entities,
-                            complete_address = complete_address,
-                            input_payload = input_payload)
+        session = Session()
 
-    session.add(address_table_entry)
+        address_table_entry = Addresses(
+                                phone_number_id=phone_number_str,
+                                entities = entities,
+                                complete_address = complete_address,
+                                input_payload = input_payload)
 
-    session.commit()
+        session.add(address_table_entry)
+        session.commit()
+        
     session.close()
 
     return jsonify({"message": "Address table entry saved successfully.", "entities": entities, "complete_address": complete_address}), 201
@@ -139,14 +142,14 @@ def update_address(address_id):
     
     input_payload = str(data)
 
-    complete_address = ", ".join([str(data[key]) for key in data if((data[key]) and (key != "phone"))])
-    print("complete_address: ", complete_address)
 
     print("\nconcatenated address:" , input_payload)
     entities = extract_entities(input_payload, aer_prompt, model, parameters)
     
     print("\nEntities: ", entities)
 
+    complete_address = ", ".join([str(entities[key]) for key in entities if((entities[key]) and (key != "phone_number"))])
+    print("complete_address: ", complete_address)
 
     session = Session()
 
