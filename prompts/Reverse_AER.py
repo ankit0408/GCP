@@ -1,17 +1,20 @@
-prompt = """Your only task is to map meaningful address entities from an input json object named \"source_address_entities\" (enclosed within <<<>>>) to values in \"destination_address_entities\" (also enclosed within <<<>>>) which is a list of various different kinds of address entities where each entity is enclosed within double quotes. Your task is to fill appropriate values from \"source_address_entities\" into \"destination_address_entities\". 
+prompt = """Your task is to map meaningful address entities from an input json object named \"source_address_entities\" (enclosed within <<<>>>) to values in \"destination_address_entities\" (also enclosed within <<<>>>) which is a list of various different kinds of address entities where each entity is enclosed within double quotes. Your task is to fill appropriate values from \"source_address_entities\" into \"destination_address_entities\". If an entity from \"source_address_entities\" matches exactly with an entity from \"destination_address_entities\" then you must map these two directly.
 
-To fill appropriate values from \"source_address_entities\" into \"destination_address_entities\" you should use your background knowledge about the address entities and geo location. You must keep the following instructions in mind:
+Here is list of all possible keys in \"source_address_entities\" = [\"name\", \"door\",  \"floor\", \"road\", \"building\", \"sub_locality\", \"tehsil\", \"village\", \"locality\",  \"city\", \"district\", \"state\", \"country\", \"pincode\", \"landmark\", \"phone_number\"]
 
-1. You know how an Indian pincode (6 digits) is different from a mobile number and hence these two won\'t be matched together. 
+If an entity in the \"destination_address_entities\" requires you to concatenate multiple entities from \"source_address_entities\" then you must make sure that you concatenate their values in the same order that you are provided in the above list containing all possible keys in \"source_address_entities\". For example \"door\" must come before \"floor\" in the output.
+
+
+To fill appropriate values from \"source_address_entities\" into \"destination_address_entities\" you should use your background knowledge about the address entities, their hierarchy and geo location. You must keep the following instructions in mind:
+
+1. You know how an Indian pincode (6 digits) is different from a mobile number and hence these two won\'t be matched together. You should not output pincode if you don\'t have value for pincode.
 2. A state/locality/sub_locality/landmark is different from each other on the basis of region covered by each address entity. Hence you cannot map these entities amongst each other. 
 3. \"name\" key from \"source_address_entities\" should only be matched with a \"name\" related entity in the \"destination_address_entities\". That is you cannot map values from door/road/society etc to a name entity in the ouptut.
 4. If an address entity from \"source_address_entities\" matches exactly with an entity from \"destination_address_entities\" then you must map always them as it is.
-5. If you do not have a value for pincode in \"source_address_entities\" then you must not show any value for pincode in the \"destination_address_entities\"
 
 
 Your output must be in json format where the key is a value from the list \"destination_address_entities\". Each key in the output can have one or multiple values which should come from the input \"source_address_entities\". You must make sure that you don\'t use the same part of input from \"source_address_entities\" as value in two different keys for the output.
 
-Here is list of all possible keys in \"source_address_entities\" = [\"name\", \"door\",  \"floor\", \"road\", \"building\", \"sub_locality\", \"tehsil\", \"village\", \"locality\",  \"city\", \"district\", \"state\", \"country\", \"pincode\", \"landmark\", \"phone_number\"]
 
 You are only supposed to use an entity from the input \"destination_address_entities\" as key in the output. You must not create your own keys in the output. You should not output a key with an empty value in the output.
 
@@ -426,5 +429,42 @@ output: {
 \"name\": \"mohit\",
 \"state\": \"haryana\",
 \"City/District/Town\": \"gurgaon\"
+}
+
+
+input: <<<\"source_address_entities\": {\'name\': \'Quechua\', \'door\': \'Flat-123\', \'floor\': \'2nd\', \'building\': \'Gangotri Apartments\', \'city\': \'Pune\', \'state\': \'Maharashtra\', \'country\': \'India\', \'landmark\': \'Near Govt School\'}>>> 
+<<<\"destination_address_entities\": [\'name\', \'pincode\', \'locality\', \'area/street\', \'city\', \'state\', \'phone\', \'landmark\']>>>
+output: {
+\"name\": \"Quechua\",
+\"locality\": \"Gangotri Apartments\",
+\"area/street\": \"Flat-123, 2nd Floor\",
+\"city\": \"Pune\",
+\"state\": \"Maharashtra\",
+\"phone\": \"9832023324\",
+\"landmark\": \"Near Govt School\"
+}
+
+
+input: <<<\"source_address_entities\": {\'door\': \'1\', \'road\': \'West Canal Road\', \'sub_locality\': \'Triveni Vihar\', \'locality\': \'Sewla Kalan\', \'city\': \'Dehradun\', \'state\': \'Uttarakhand\', \'country\': \'India\', \'landmark\': \'Simla By Pass Near St Judes School\'}>>> 
+<<<\"destination_address_entities\": [\'name\', \'pin\', \'state\', \'Address(House No., Building, Area, Street)\', \'locality\', \'City/District/Town\']>>>
+output: {
+\"state\": \"Uttarakhand\",
+\"Address(House No., Building, Area, Street)\": \"1, West Canal Road, Triveni Vihar, Sewla Kalan, Dehradun, Uttarakhand, India\",
+\"locality\": \"Sewla Kalan\",
+\"City/District/Town\": \"Dehradun\"
+}
+
+
+input: <<<\"source_address_entities\": {\'name\': \'Raksha\', \'locality\': \'Sector 45\', \'city\': \'Gurgaon\', \'sub_locality\": \"ayachi apartments\", \'state\': \'Haryana\', \'pincode\': \'122003\', \'landmark\': \'Near DPS School\'}>>> 
+<<<\"destination_address_entities\": [\'name\', \'pincode\', \'locality\', \'area\', \'city\', \'state\', \'phone\', \'landmark\']>>>
+output: {
+\"name\": \"Raksha\",
+\"pincode\": \"122003\",
+\"locality\": \"Sector 45\",
+\"area\": \"ayachi apartments\",
+\"city\": \"Gurgaon\",
+\"state\": \"Haryana\",
+\"phone\": \"9832023324\",
+\"landmark\": \"Near DPS School\"
 }
 """
