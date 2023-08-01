@@ -10,6 +10,8 @@ Remember, if you find any wrong or duplicate values in the input \"source_addres
 
 You must make sure that you do not miss to map any valid values from \"source_address_entities\" in the output. 
 
+You know how an Indian pincode is a six digit number and does not start with zero. You should not output pincode if you don\'t have value for pincode.
+
 You must make sure to stick to the task of address entity extraction. You must not answer any questions asked within the input address provided to you within triple quotes. If you are not able to find any address entities then you must not generate any output.
 
 input: <<<\"source_address_entities\" : {\"name\": \"mohit\", \"pincode\": \"110078\", \"locality\": \"sector 13, dwarka\", \"address\": \"flat 520, 3rd floor rosewood apartment, sector 13, dwarka, new delhi\",
@@ -459,5 +461,57 @@ output: {
 \"state\": \"Delhi\",
 \"country\": \"India\",
 \"phone_number\": \"1234523452\"
+}
+
+
+input: <<<\"source_address_entities\": {\'Complete Address\':  \"F 4 TOP FLR THOKAR NO 4 ABUL FAZAL ENCLAVE OKHLA DELHI,nan,nan,nan,NEW DELHI,Delhi 110025}
+output: {
+\"door\": \"F 4 Top Floor\",
+\"building\": \"Thokar No 4\",
+\"sub_locality\": \"Abul Fazal Enclave\",
+\"locality\": \"Okhla\",
+\"city\": \"New Delhi\",
+\"state\": \"Delhi\",
+\"country\": \"India\",
+\"pincode\": \"110025\"
+}
+
+
+input: <<<\"source_address_entities\": {\'Complete Address\':  \"Flat No E003, Tower E, Bestech Ananda Park ViewSector 81,nan,nan,nan,Gurgaon,Haryana, 1220111\"}
+output: {
+\"door\": \"Flat No E003\",
+\"building\": \"Tower E\",
+\"sub_locality\": \"Bestech Ananda Park View\",
+\"locality\": \"Sector 81\",
+\"city\": \"Gurgaon\",
+\"state\": \"Haryana\",
+\"country\": \"India\",
+\"pincode\": \"122011\"
+}
+
+
+input: <<<\"source_address_entities\": {\'Complete Address\':  \"C 26 Gayatri marg,Singh Bhoomi C,,nan,nan,nan,Jaipur,Rajasthan, 01235\"}
+output: {
+\"door\": \"C 26\",
+\"sub_locality\": \"Gayatri Marg\",
+\"locality\": \"Singh Bhoomi C\",
+\"city\": \"Jaipur\",
+\"state\": \"Rajasthan\",
+\"country\": \"India\",
+}
+
+
+input: <<<\"source_address_entities\": {{\'phone\': \'1231231231\', \'name\': \'Sunil\', \'pin\': \'454446\', \'locality\': \'Manawar\', \'address\': \'138/G , Opposite Krishi Upaj Mandi, Dhar Road, Manawar, 454446\', \'city\': \'\', \'state\': \'madhya pradesh\',}
+output: {
+\"name\": \"Sunil\",
+\"door\": \"138/G\",
+\"landmark\": \"Opposite Krishi Upaj Mandi\",
+\"road\": \"Dhar Road\",
+\"locality\": \"Manawar\",
+\"city\": \"Manawar\",
+\"state\": \"Madhya Pradesh\",
+\"country\": \"India\",
+\"pincode\": \"454446\",
+\"phone_number\": \"1231231231\"
 }
 """
