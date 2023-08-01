@@ -14,8 +14,8 @@ def get_entity_ordering_dict():
         "name": 0,
         "door": 1,
         "floor": 2,
-        "road": 3,
-        "building": 4,
+        "building": 3,
+        "road": 4,
 
         "sub_locality": 5,
         "village": 5,
